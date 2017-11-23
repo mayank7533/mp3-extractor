@@ -19,11 +19,11 @@ for path,dirs,files in os.walk(currentDir):
 for path,dirs,files in os.walk(currentDir):
     for file in files:
         nameArr = file.split('.')
-        forma =  nameArr[len(nameArr)-1]
+        forma =  nameArr[-1]
         if forma.lower() == "mkv" or forma.lower() == "mp4" or forma.lower() == "flv":
             try:
                 clip = mp.VideoFileClip(file)
-                newName = nameArr[0]+".mp3"
+                newName = '.'.join(nameArr[:-1])+".mp3"
                 if newName not in dirList:
                     clip.audio.write_audiofile(nameArr[0]+".mp3")
             except:
